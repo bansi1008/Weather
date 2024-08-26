@@ -1,5 +1,5 @@
 <?php
-// Start the HTML document
+
 echo '<!DOCTYPE html>';
 echo '<html lang="en">';
 echo '<head>';
@@ -21,7 +21,7 @@ echo '</head>';
 echo '<body>';
 echo '<div class="container mt-5">';
 
-// Dark mode toggle button
+
 echo '<div class="d-flex justify-content-end mb-4">';
 echo '<div class="form-check form-switch">';
 echo '<input class="form-check-input" type="checkbox" id="darkModeToggle">';
@@ -32,30 +32,30 @@ echo '</div>';
 if (isset($_GET['city'])) {
     $city = urlencode($_GET['city']); // URL encode the city name to handle spaces and special characters
 
-    // Your API key (replace with your actual API key)
+     
     $apiKey = "96a8344b71f84dfcb564d11eafd27033";
 
-    // The URL of the API endpoint, including the city and API key
+    
     $url = "http://api.openweathermap.org/data/2.5/weather?q={$city}&appid={$apiKey}&units=metric";
 
-    // Use file_get_contents to send the request and get the API response
+    
     $response = file_get_contents($url);
 
-    // Check if the response is not false (successful request)
+    
     if ($response !== false) {
-        // Decode the JSON response into an associative array
+    
         $weatherData = json_decode($response, true);
 
-        // Check if the API returned a valid result
+        
         if ($weatherData['cod'] == 200) {
-            // Extract the information you need
+            
             $temperature = $weatherData['main']['temp'];
             $description = $weatherData['weather'][0]['description'];
             $humidity = $weatherData['main']['humidity'];
             $windSpeed = $weatherData['wind']['speed'];
             $cityName = $weatherData['name'];
 
-            // Display the weather information
+            
             echo '<div class="card text-center animate__animated animate__fadeInUp">';
             echo '<div class="card-header">';
             echo "<h1>Weather in {$cityName}</h1>";
@@ -80,7 +80,7 @@ if (isset($_GET['city'])) {
             echo '</div>';
         }
     } else {
-        // Handle the error
+        
         echo '<div class="alert alert-danger text-center animate__animated animate__fadeInUp">';
         echo '<h2>Failed to fetch weather data.</h2>';
         echo '</div>';
@@ -91,8 +91,8 @@ if (isset($_GET['city'])) {
     echo '</div>';
 }
 
-// End the HTML document
-echo '</div>'; // Close container div
+
+echo '</div>'; 
 echo '<!-- Bootstrap JS -->';
 echo '<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>';
 echo '<!-- JavaScript to handle Dark Mode Toggle -->';
